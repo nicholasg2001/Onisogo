@@ -1,6 +1,7 @@
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { Button, buttonVariants } from "./ui/button";
 import heroImage from "@/assets/hero.webp";
+import { Link } from "react-router-dom";
 
 export function Hero() {
   return (
@@ -34,8 +35,8 @@ export function Hero() {
         <div className="space-y-4 md:space-y-0 md:space-x-4">
           <Button className="w-full md:w-1/3">Get Started</Button>
 
-          <a
-            href="https://github.com/kirklin/shadcn-landing-page-template.git"
+          <Link
+            to="https://github.com/kirklin/shadcn-landing-page-template.git"
             target="_blank"
             rel="noreferrer noopener"
             className={`w-full md:w-1/3 ${buttonVariants({
@@ -44,7 +45,7 @@ export function Hero() {
           >
             Github Repository
             <GitHubLogoIcon className="ml-2 w-5 h-5" />
-          </a>
+          </Link>
         </div>
       </div>
 

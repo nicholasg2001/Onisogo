@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
-import { Menu } from "lucide-react";
+import { LogIn, Menu } from "lucide-react";
 import { Button, buttonVariants } from "./ui/button";
 import { ModeToggle } from "./mode-toggle";
+import { Link } from "react-router-dom";
 import {
   Sheet,
   SheetContent,
@@ -48,13 +48,13 @@ export function Navbar() {
       <NavigationMenu className="mx-auto">
         <NavigationMenuList className="container h-14 px-4 w-screen flex justify-between ">
           <NavigationMenuItem className="font-bold flex">
-            <a
-              href="/"
+            <Link
+              to="/"
               className="ml-2 font-bold text-xl flex"
             >
               
               Onisogo
-            </a>
+            </Link>
           </NavigationMenuItem>
 
           {/* mobile */}
@@ -82,26 +82,26 @@ export function Navbar() {
                 </SheetHeader>
                 <nav className="flex flex-col justify-center items-center gap-2 mt-4">
                   {routeList.map(({ href, label }: RouteProps) => (
-                    <a
+                    <Link
                       key={label}
-                      href={href}
+                      to={href}
                       onClick={() => setIsOpen(false)}
                       className={buttonVariants({ variant: "ghost" })}
                     >
                       {label}
-                    </a>
+                    </Link>
                   ))}
-                  <a
-                    href="https://github.com/nicholasg2001/onisogo"
+                  <Link
+                    to="https://github.com/nicholasg2001/onisogo"
                     target="_blank"
                     rel="noreferrer noopener"
                     className={`w-[110px] border ${buttonVariants({
                       variant: "secondary",
                     })}`}
                   >
-                    <GitHubLogoIcon className="mr-2 w-5 h-5" />
-                    Github
-                  </a>
+                    <LogIn className="mr-2 w-5 h-5" />
+                    Login
+                  </Link>
                 </nav>
               </SheetContent>
             </Sheet>
@@ -110,15 +110,15 @@ export function Navbar() {
           {/* desktop */}
           <nav className="hidden md:flex gap-2">
             {routeList.map((route: RouteProps) => (
-              <a
-                href={route.href}
+              <Link
+                to={route.href}
                 key={route.href}
                 className={`text-[17px] ${buttonVariants({
                   variant: "ghost",
                 })}`}
               >
                 {route.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -128,13 +128,13 @@ export function Navbar() {
               size="icon"
               className="ghost"
             >
-              <a
+              <Link
                 rel="noreferrer noopener"
-                href="https://github.com/nicholasg2001/onisogo"
+                to="/login"
                 target="_blank"
               >
-                <GitHubLogoIcon className="w-5 h-5" />
-              </a>
+                Login
+              </Link>
             </Button>
 
             <ModeToggle />
