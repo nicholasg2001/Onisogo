@@ -4,6 +4,8 @@ import { LogIn, Menu } from "lucide-react";
 import { Button, buttonVariants } from "./ui/button";
 import { ModeToggle } from "./mode-toggle";
 import { Link } from "react-router-dom";
+import { useUser } from "@clerk/clerk-react";
+import { SignInButton, UserButton } from "@clerk/clerk-react";
 import {
   Sheet,
   SheetContent,
@@ -43,6 +45,8 @@ const routeList: RouteProps[] = [
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const { user } = useUser();
+
   return (
     <header className="sticky border-b-[1px] top-0 z-40 w-full bg-white dark:border-b-slate-700 dark:bg-background">
       <NavigationMenu className="mx-auto">
@@ -91,17 +95,13 @@ export function Navbar() {
                       {label}
                     </Link>
                   ))}
-                  <Link
-                    to="https://github.com/nicholasg2001/onisogo"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className={`w-[110px] border ${buttonVariants({
-                      variant: "secondary",
-                    })}`}
-                  >
-                    <LogIn className="mr-2 w-5 h-5" />
-                    Login
-                  </Link>
+                  {user ? (  
+                    <UserButton afterSignOutUrl="/"/>
+                  ):(
+                    <SignInButton mode="modal">
+                    <Button>Login</Button>
+                  </SignInButton>
+                  )}
                 </nav>
               </SheetContent>
             </Sheet>
@@ -123,19 +123,13 @@ export function Navbar() {
           </nav>
 
           <div className="hidden md:flex gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="ghost"
-            >
-              <Link
-                rel="noreferrer noopener"
-                to="/login"
-                target="_blank"
-              >
+            {user ? (
+              <UserButton afterSignOutUrl="/"/>
+            ):(
+              <SignInButton mode="modal">
                 Login
-              </Link>
-            </Button>
+              </SignInButton>
+            )}
 
             <ModeToggle />
           </div>

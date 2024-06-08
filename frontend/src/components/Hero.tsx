@@ -2,6 +2,7 @@ import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { Button, buttonVariants } from "./ui/button";
 import heroImage from "@/assets/hero.webp";
 import { Link } from "react-router-dom";
+import { SignUpButton } from "@clerk/clerk-react";
 
 export function Hero() {
   return (
@@ -33,10 +34,12 @@ export function Hero() {
         </p>
 
         <div className="space-y-4 md:space-y-0 md:space-x-4">
-          <Button className="w-full md:w-1/3">Get Started</Button>
+          <Button className="w-full md:w-1/3">
+            Get Started
+          </Button>
 
           <Link
-            to="https://github.com/kirklin/shadcn-landing-page-template.git"
+            to="https://github.com/nicholasg2001/Onisogo.git"
             target="_blank"
             rel="noreferrer noopener"
             className={`w-full md:w-1/3 ${buttonVariants({
